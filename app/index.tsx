@@ -1,18 +1,21 @@
-import { Text, View, ScrollView, SafeAreaView } from "react-native";
-import { useState } from "react";
-import { Stack, useRouter } from "expo-router";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "../screens/Home";
+import Login from "../screens/Login";
+import Signup from "../screens/Signup";
 
+const Stack = createNativeStackNavigator();
 const Home = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "green" }}>
+    <Stack.Navigator>
       <Stack.Screen
-        options={{
-          headerStyle: {
-            backgroundColor: "black",
-          },
-        }}
+        options={{ headerShown: false }}
+        name="Home"
+        component={HomeScreen}
       />
-    </SafeAreaView>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signup" component={Signup} />
+    </Stack.Navigator>
   );
 };
 
