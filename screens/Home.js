@@ -20,6 +20,7 @@ const Home = ({ route }) => {
   const [loading, setLoading] = useState(true);
 
   const user = route?.params?.user;
+  const [name, setName] = useState("");
 
   const navigation = useNavigation();
 
@@ -43,6 +44,7 @@ const Home = ({ route }) => {
         setLoading(false);
       }
     };
+    setName(user?.name);
     fetchData();
   }, []);
 
@@ -57,7 +59,7 @@ const Home = ({ route }) => {
           <Text
             style={[style.text1, { color: COLORS.black, marginVertical: 20 }]}
           >
-            Hello, <Text style={style.text1}>{user?.name}</Text>
+            Hello, <Text style={style.text1}>{name}</Text>
           </Text>
         </View>
 
@@ -129,7 +131,7 @@ const style = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
     justifyContent: "space-evenly",
-    padding: 20,
+    paddingHorizontal: 20,
   },
 
   text1: {

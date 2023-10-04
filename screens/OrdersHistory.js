@@ -17,6 +17,7 @@ import { database } from "../firebase/firebase.config";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useAuth } from "../contexts/AuthContext";
 import React from "react";
+import ItemNotFound from "./ItemNotFound";
 
 const OrdersHistory = () => {
   const navigation = useNavigation();
@@ -69,55 +70,62 @@ const OrdersHistory = () => {
           </TouchableOpacity>
           <Text style={style.heading}>ORDER HISTORY</Text>
         </View>
-
-        <View style={{ marginVertical: 40, maxHeight: 400 }}>
-          <FlatList
-            data={orderList}
-            renderItem={({ item }) => (
-              <View>
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <View style={{}}>
-                    <Text style={{ color: COLORS.yellow, fontWeight: "600" }}>
-                      {item.date}
-                    </Text>
-                  </View>
-                  <View style={{ marginVertical: 10 }}>
-                    <Text style={{ color: COLORS.yellow, fontWeight: "600" }}>
-                      {item.totalPrice}
-                    </Text>
-                  </View>
-                </View>
-
-                <View style={{}}>
-                  <Text
+        {orderList.length !== 0 ? (
+          <View style={{ marginVertical: 40, maxHeight: 500 }}>
+            <FlatList
+              data={orderList}
+              renderItem={({ item }) => (
+                <View>
+                  <View
                     style={{
-                      color: "#a3a3a3",
-                      fontWeight: "600",
-                      fontSize: 16,
+                      flex: 1,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
                     }}
                   >
-                    {item.items.length} items
-                  </Text>
-                </View>
+                    <View style={{}}>
+                      <Text style={{ color: COLORS.yellow, fontWeight: "600" }}>
+                        {item.date}
+                      </Text>
+                    </View>
+                    <View style={{ marginVertical: 10 }}>
+                      <Text style={{ color: COLORS.yellow, fontWeight: "600" }}>
+                        {item.totalPrice}
+                      </Text>
+                    </View>
+                  </View>
 
-                <View style={{ marginVertical: 40 }}>
-                  <Button
-                    title="VIEW DETAILS"
-                    style={{ height: 50, width: "100%", borderWidth: 2.5 }}
-                    onPress={() => handleOrderDetails(item)}
-                  />
+                  <View style={{}}>
+                    <Text
+                      style={{
+                        color: "#a3a3a3",
+                        fontWeight: "600",
+                        fontSize: 16,
+                      }}
+                    >
+                      {item.items.length} items
+                    </Text>
+                  </View>
+
+                  <View style={{ marginVertical: 40 }}>
+                    <Button
+                      title="VIEW DETAILS"
+                      style={{ height: 50, width: "100%", borderWidth: 2.5 }}
+                      onPress={() => handleOrderDetails(item)}
+                    />
+                  </View>
                 </View>
-              </View>
-            )}
-            showsVerticalScrollIndicator={false}
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        ) : (
+          <ItemNotFound
+            heading="NO ORDER HISTOY"
+            statement="Try searching for items and adding them to your basket"
+            icon="history"
           />
-        </View>
+        )}
       </View>
     </SafeAreaView>
   );

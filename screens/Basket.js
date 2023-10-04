@@ -57,7 +57,7 @@ const Basket = ({ route }) => {
 
           if (snapShot.exists()) {
             const data = await snapShot.val();
-            setBasketData(Object.values(data));
+            setBasketData(() => Object.values(data));
             const bd = Object.values(data);
             setTotalPrice(
               bd.reduce((accumulator, currentItem) => {
@@ -66,6 +66,9 @@ const Basket = ({ route }) => {
             );
             setShowContent(true);
             console.log(Object.values(data));
+          } else {
+            setBasketData([]);
+            setShowContent(false);
           }
           console.log("this function also called every time");
         } catch (error) {
@@ -122,6 +125,7 @@ const Basket = ({ route }) => {
         <ItemNotFound
           heading="Basket Emtpy"
           statement="Try searching for items and adding them to your basket"
+          icon="shopping-basket"
         />
       ) : (
         <FlatList

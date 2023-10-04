@@ -34,9 +34,6 @@ const AddToBasket = ({ route }) => {
 
   const storeBasketData = async (basketData) => {
     try {
-      // const jsonBasketData = JSON.stringify(basketData);
-      // await AsyncStorage.setItem("@basketData", jsonBasketData);
-      // console.log(`Basket data added to local storage`);
       const dataRef = ref(database, `Basket/${user}/${item._id}`);
       const snapshot = await get(dataRef);
       if (snapshot.exists()) {

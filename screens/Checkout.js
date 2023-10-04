@@ -46,7 +46,6 @@ const Checkout = ({ route }) => {
 
       const dataRef = await ref(database, `Order/${user}`);
       const snapShot = await get(dataRef);
-      alert(JSON.stringify(order));
       if (snapShot.exists()) {
         const existingOrders = snapShot.val();
         const orderKeys = Object.keys(existingOrders);

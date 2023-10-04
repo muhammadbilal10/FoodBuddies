@@ -2,11 +2,11 @@ const { View, Text, StyleSheet } = require("react-native");
 import Icon from "react-native-vector-icons/FontAwesome";
 import COLORS from "../constants/colors";
 
-const ItemNotFound = ({ heading, statement }) => {
+const ItemNotFound = ({ heading, statement, icon }) => {
   return (
     <View style={styles.container}>
       <View style={{ marginVertical: 20 }}>
-        <Icon name="search" color="#C7C7C7" size={70} style={styles.icon} />
+        <Icon name={icon} color="#C7C7C7" size={70} style={styles.icon} />
       </View>
 
       <View>

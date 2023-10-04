@@ -90,7 +90,7 @@ const Search = () => {
               console.log(`Show list item : ${JSON.stringify(list)}`);
               setShowFooditems(list);
             }}
-            onBlur={() => setShowFooditems(foodItem)}
+            // onBlur={() => search === "" && setShowFooditems(foodItem)}
           >
             <Icon
               style={{ position: "absolute", right: 12, bottom: 12 }}
@@ -114,11 +114,11 @@ const Search = () => {
               renderItem={({ item }) => (
                 <CategoryList
                   item={item}
-                  onPress={() =>
+                  onPress={() => {
                     console.log(
                       `category pressed ${JSON.stringify(selectedCategories)}`
-                    )
-                  }
+                    );
+                  }}
                   selectedCategories={selectedCategories}
                   setSelectedCategories={setSelectedCategories}
                 />
@@ -147,6 +147,7 @@ const Search = () => {
                       console.log(
                         `Varities after press ${JSON.stringify(item)}`
                       );
+
                       navigation.navigate("AddToBasket", {
                         item: item,
                         variations: item.variations,

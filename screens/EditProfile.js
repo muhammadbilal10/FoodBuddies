@@ -183,7 +183,7 @@ const EditProfile = () => {
             <View style={style.itemContainer1}>
               <View style={style.itemContainer1}>
                 <View>
-                  <Icon name="password" size={20} color={COLORS.primary} />
+                  <Icon name="lock" size={20} color={COLORS.primary} />
                 </View>
                 <View style={{ marginLeft: 25 }}>
                   <Text style={{ fontSize: 18, fontWeight: "500" }}>

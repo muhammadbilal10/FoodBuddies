@@ -1,11 +1,34 @@
 const { View, StyleSheet, Text, Image } = require("react-native");
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import React from "react";
 import Button from "../components/Button";
 import COLORS from "../constants/colors";
+import { useAuth } from "../contexts/AuthContext";
+import { remove, ref, get } from "firebase/database";
+import { database } from "../firebase/firebase.config";
 const ConfirmationLogo = require("../assets/images/ConfirmationLogo.png");
 
 const ConfirmOrder = () => {
   const navigation = useNavigation();
+  const { user } = useAuth();
+  useFocusEffect(
+    React.useCallback(() => {
+      const removeBasketData = async () => {
+        try {
+          const dataRef = ref(database, `Basket/${user}`);
+          const snapShot = await get(dataRef);
+          if (snapShot.exists()) {
+            await remove(dataRef).then(() => {
+              console.log("Basket Data removed");
+            });
+          }
+        } catch (error) {
+          console.error(`Error: ${error}`);
+        }
+      };
+      removeBasketData();
+    }, [user])
+  );
   return (
     <View style={[style.container, { backgroundColor: "#4fe178" }]}>
       <View style={style.childContainer}>
