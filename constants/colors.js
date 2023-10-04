@@ -3,9 +3,12 @@ const tintColorDark = "#fff";
 const COLORS = {
   white: "#FFFFFF",
   black: "#222222",
+  secondary: "#39868D",
   grey: "#CCCCCC",
   primary: "#1976D2",
-  secondary: "#fff",
+  yellow: "#f99928",
+  lightGrey: "#f4f4f4",
+  primary: "#67e5ce",
 };
 export default COLORS;
 

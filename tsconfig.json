@@ -11,7 +11,8 @@
     "components/Button.js",
     "screens/Signup.js",
     "screens/Login.js",
-    "screens/Home.js",
-    "constants/colors.js"
+    "screens/Welcome.js",
+    "constants/colors.js",
+    "app/index.js"
   ]
 }

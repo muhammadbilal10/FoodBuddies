@@ -14,6 +14,7 @@ const Button = (props) => {
         ...{ backgroundColor: bgColor },
         ...props.style,
       }}
+      onPress={props.onPress}
     >
       <Text style={{ fontSize: 12, color: textColor, fontWeight: "bold" }}>
         {props.title}
@@ -31,6 +32,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     borderColor: COLORS.primary,
     borderWidth: 1,
+    marginBottom: "10px",
   },
 });
 export default Button;
