@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 const Home = ({ route }) => {
   const item = ["item1", "item1", "item1", "item1", "item1"];
   const [foodItems, setFoodItems] = useState({});
+  const [resturantList, setResturantList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const user = route?.params?.user;
@@ -24,6 +25,23 @@ const Home = ({ route }) => {
 
   const navigation = useNavigation();
 
+  const Resturant = (foodList) => {
+    const separatedFoodByRestaurant = foodList.reduce((acc, foodItem) => {
+      const { resturant, ...restFood } = foodItem;
+      if (!acc[resturant]) {
+        acc[resturant] = {
+          resturantName: resturant,
+          foodList: [],
+        };
+      }
+      acc[resturant].foodList.push(restFood);
+      return acc;
+    }, {});
+
+    const restaurantArray = Object.values(separatedFoodByRestaurant);
+    setResturantList(restaurantArray);
+    return restaurantArray;
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,10 +49,11 @@ const Home = ({ route }) => {
         const snapShot = await get(foodsRef);
         if (snapShot.exists()) {
           const data = snapShot.val();
+          const itemList = Object.values(data);
+
+          Resturant(itemList);
           setFoodItems(Object.values(data));
-          data = console.log(
-            `Fetched data ${JSON.stringify(data[0].category)}`
-          );
+          console.log(`Fetched data ${JSON.stringify(filterItem)}`);
         } else {
           console.log("No Data Available");
         }
@@ -113,9 +132,10 @@ const Home = ({ route }) => {
           <View>
             <Text style={{ fontWeight: "500" }}>RESTURANTS</Text>
           </View>
+
           <FlatList
-            data={item}
-            renderItem={(item) => <ResturantCard />}
+            data={resturantList}
+            renderItem={(item) => <ResturantCard resturantDetail={item.item} />}
             keyExtractor={(item, index) => index.toString()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}

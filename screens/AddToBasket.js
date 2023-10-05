@@ -4,8 +4,9 @@ const {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Picker,
   ScrollView,
+  Picker,
+  Touchable,
 } = require("react-native");
 const Burger = require("../assets/images/Burger.jpg");
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -17,6 +18,7 @@ import { database } from "../firebase/firebase.config";
 import { useAuth } from "../contexts/AuthContext";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useState } from "react";
+// import Picker from "@react-native-picker/picker";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AddToBasket = ({ route }) => {
@@ -62,7 +64,10 @@ const AddToBasket = ({ route }) => {
   };
 
   return (
-    <ScrollView showsHorizontalScrollIndicator={false}>
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+      style={{ backgroundColor: COLORS.white }}
+    >
       <View
         style={{
           flex: 1,
@@ -74,6 +79,16 @@ const AddToBasket = ({ route }) => {
         <View>
           <View>
             <Image source={item.img_url} style={styles.image} />
+            <TouchableOpacity
+              style={{
+                position: "absolute",
+                top: 20,
+                left: 20,
+              }}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="chevron-left" size={25} color="#d6d5d5" />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.middleContainer}>
@@ -104,10 +119,7 @@ const AddToBasket = ({ route }) => {
               <Text
                 style={{ color: "#aeaeae", fontFamily: "Body", lineHeight: 20 }}
               >
-                Non odit iusto delectus maxime sit placeat voluptatum dolorem.
-                Dolores quos rerum iusto. Beatae totam ab veritatis aliquid
-                tenetur qui ut. Quia ut dolorum enim et. Exercitationem
-                occaecati eum est ex qui harum aliquam.
+                {item.description}
               </Text>
             </View>
           </View>

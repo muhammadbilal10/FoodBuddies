@@ -10,17 +10,15 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import COLORS from "../constants/colors";
 
 const ItemCard = ({ item, onPress, variation }) => {
-  console.log(`Vartions : ${variation}`);
-  console.log(`item : ${JSON.stringify(variation)}`);
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={style.container}>
         <View>
-          <Image source={item.img_url} style={style.img} />
+          <Image source={item?.img_url} style={style.img} />
         </View>
 
         <View>
-          <Text style={style.heading2}>{item.title}</Text>
+          <Text style={style.heading2}>{item?.title}</Text>
         </View>
 
         <View style={style.childContainer}>

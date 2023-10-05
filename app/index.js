@@ -18,6 +18,8 @@ import EditProfile from "../screens/EditProfile";
 import ChangePassword from "../screens/ChangePassword";
 import OrdersHistory from "../screens/OrdersHistory";
 import OrderDetails from "../screens/OrderDetails";
+import ResturantFoodList from "../screens/ResturantFoodList";
+import ConfirmPayment from "../screens/ConfirmPayment";
 const Stack = createNativeStackNavigator();
 
 const Home = ({ route }) => {
@@ -31,6 +33,8 @@ const Home = ({ route }) => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="HomeTabs" component={HomeTabs} />
+        <Stack.Screen name="ResturantFoodList" component={ResturantFoodList} />
+
         <Stack.Screen name="ChangePassword" component={ChangePassword} />
 
         <Stack.Screen name="Basket" component={Basket} />
@@ -41,6 +45,7 @@ const Home = ({ route }) => {
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Checkout" component={Checkout} />
         <Stack.Screen name="ConfirmOrder" component={ConfirmOrder} />
+        <Stack.Screen name="ConfirmPayment" component={ConfirmPayment} />
 
         {/* <Stack.Screen name="EmailVerification" component={EmailVerification} /> */}
       </Stack.Navigator>

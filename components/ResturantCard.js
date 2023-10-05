@@ -1,10 +1,28 @@
-const { View, Text, StyleSheet, Image } = require("react-native");
+const {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} = require("react-native");
+import { useNavigation } from "@react-navigation/native";
+
 const MACDONALDS = require("../assets/images/Macdonalds.png");
-const ResturantCard = () => {
+const ResturantCard = ({ resturantDetail }) => {
+  const navigation = useNavigation();
   return (
-    <View style={style.container}>
-      <Image source={MACDONALDS} style={style.img} />
-    </View>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("ResturantFoodList", {
+          resturantDetail: resturantDetail,
+        })
+      }
+    >
+      <View style={style.container}>
+        <Image source={MACDONALDS} style={style.img} />
+        <Text>{resturantDetail.resturantName}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 

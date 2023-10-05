@@ -62,7 +62,7 @@ const Checkout = ({ route }) => {
           console.log("Order added");
         });
       }
-      navigation.navigate("ConfirmOrder");
+      navigation.navigate("ConfirmPayment");
     } catch (error) {
       console.error(`ERROR: ${error}`);
     }
